@@ -1,31 +1,37 @@
 #include "philo.h"
 
-void take_forks(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right)
+void take_forks(t_philo *person)
 {
-    pthread_mutex_lock(fork_left);
-    pthread_mutex_lock(fork_right);
+    pthread_mutex_lock(person->fork_left);
+    display("has taken a fork", person);
+    pthread_mutex_lock(person->fork_right);
+    display("has taken a fork", person);
 }
 
-void drop_forks(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right)
+void drop_forks(t_philo *person)
 {
-    pthread_mutex_unlock(fork_left);
-    pthread_mutex_unlock(fork_right);
+    pthread_mutex_unlock(person->fork_left);
+    pthread_mutex_unlock(person->fork_right);
 }
 
-void eat(unsigned int num, pthread_t thread, unsigned int *meals)
+void eat(t_philo *person)
 {
+    display("is eating", person);
+    usleep(general.time_eat * 1000);
+    person->t_life += general.time_die;
+    person->meals += 1;
+}
+
+void _sleep(t_philo *person)
+{
+    display("is sleeping", person);
+    usleep(general.time_sleep * 1000);
+}
+
+void death(t_philo *person)
+{
+    person->is_alive = false;
     pthread_mutex_lock(&general.display);
-    printf("NUMERO: %d  PROCESSO: %lu  MEALS: %d\n", num, thread, ++meals[0]);
-    pthread_mutex_unlock(&general.display);
+    printf("%lu %d died\n", timestamp() - person->t_born, person->num);
+    pthread_mutex_unlock(&general.is_on);
 }
-
-void sleep(void)
-{
-    int x;
-
-    x = 0;
-    while (x < 100000)
-        ++x;
-}
-
-

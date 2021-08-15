@@ -5,12 +5,14 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_philosophers
 {
     unsigned int num;
-    unsigned long time_die;
-    unsigned long time_sleep;
+    unsigned long t_born;
+    unsigned long t_life;
     unsigned int meals;
     pthread_mutex_t *fork_left;
     pthread_mutex_t *fork_right;
@@ -41,8 +43,12 @@ void start_meeting(void);
 int	ft_atoi(const char *fr);
 void *start_thread_philo(void *num_philo);
 void create_philos(t_philo *philos, int num_philos);
-void take_forks(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right);
-void eat(unsigned int num, pthread_t thread, unsigned int *meals);
-void drop_forks(pthread_mutex_t *fork_left, pthread_mutex_t *fork_right);
-void sleep(void);
+void take_forks(t_philo *person);
+void eat(t_philo *person);
+void drop_forks(t_philo *person);
+void _sleep(t_philo *person);
+long timestamp(void);
+void display(char *string, t_philo *person);
+void death(t_philo *person);
+void *monitor(void *person);
 #endif
