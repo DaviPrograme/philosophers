@@ -51,4 +51,5 @@ long timestamp(void);
 void display(char *string, t_philo *person);
 void death(t_philo *person);
 void *monitor(void *person);
+void think(t_philo *person);
 #endif

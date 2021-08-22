@@ -17,16 +17,17 @@ void *create_thread_philo(void *philosopher)
         eat(philo);
         drop_forks(philo);
         _sleep(philo);
+        think(philo);
     }
     return NULL;
 }
 
 void create_philos(t_philo *all_philos, int num_philos)
 {
-    if (--num_philos < 0)
+    if (num_philos < 0)
         return;
     pthread_create(&all_philos[num_philos].thread, NULL, create_thread_philo, &all_philos[num_philos]);
     pthread_detach(all_philos[num_philos].thread);
     usleep(50);
-    create_philos(philos, num_philos);
+    create_philos(philos, num_philos - 2);
 }

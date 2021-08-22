@@ -19,6 +19,8 @@ void init_philos(int num_philos)
 
 void init_general_infos(char **args, int count_args)
 {
+    unsigned int count_philos;
+
     general.n_philos = atoi(args[1]);
     general.time_die = atoi(args[2]);
     general.time_eat = atoi(args[3]);
@@ -33,6 +35,10 @@ void init_general_infos(char **args, int count_args)
     general.forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * general.n_philos);
     if (!general.forks)
         error(3);
+    count_philos = -1;
+    while (++count_philos < general.n_philos)
+        pthread_mutex_init(&general.forks[count_philos], NULL);
+    pthread_mutex_init(&general.display, NULL);
 }
 
 void init_globals(int argc, char **args)

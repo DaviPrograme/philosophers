@@ -28,6 +28,11 @@ void _sleep(t_philo *person)
     usleep(general.time_sleep * 1000);
 }
 
+void think(t_philo *person)
+{
+    display("is thinking", person);
+}
+
 void death(t_philo *person)
 {
     person->is_alive = false;
