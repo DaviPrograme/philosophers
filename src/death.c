@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_death.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoreira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,25 @@
 
 #include "philo.h"
 
-void	error(int id_erro)
+void	kill_all_philos(void)
 {
-	printf("Error\n");
-	exit(id_erro);
+	unsigned int	x;
+
+	x = 0;
+	while (x < general.n_philos)
+	{
+		philos[x].is_alive = false;
+		++x;
+	}
+}
+
+void	death(t_philo *person)
+{
+	person->is_alive = false;
+	pthread_mutex_lock(&general.display);
+	if (!general.a_philo_died)
+		printf("%lu %d died\n", timestamp() - person->t_born, person->num);
+	general.a_philo_died = true;
+	kill_all_philos();
+	pthread_mutex_unlock(&general.display);
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmoreira <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/13 18:00:35 by dmoreira          #+#    #+#             */
+/*   Updated: 2020/02/13 18:01:49 by dmoreira         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void start_meeting()
+void	start_meeting(void)
 {
-    create_philos(philos, general.n_philos);
+	create_philos(philos, general.n_philos);
 }

@@ -1,4 +1,4 @@
-SRC_FILES = error.c atoi.c philo.c checks.c start.c init.c actions.c time.c display.c monitor.c free.c
+SRC_FILES = error.c atoi.c philo.c checks.c start.c init.c actions.c time.c display.c monitor.c free.c death.c
 OBJS = $(patsubst %.c, %.o, $(SRC_FILES))
 SRC_DIR = src/
 OBJS_DIR = objs/
