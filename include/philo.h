@@ -32,6 +32,7 @@ struct s_general_infos
     unsigned long int time_eat;
     unsigned long int time_sleep;
     bool opt_eat;
+    bool a_philo_died;
     unsigned int num_eat;
 } general;
 
@@ -51,5 +52,6 @@ long timestamp(void);
 void display(char *string, t_philo *person);
 void death(t_philo *person);
 void *monitor(void *person);
+void free_memory(void);
 void think(t_philo *person);
 #endif

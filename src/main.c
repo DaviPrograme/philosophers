@@ -8,6 +8,7 @@ int main(int argc, char **argv)
         error(2);
     init_globals(argc, argv);
     start_meeting();
-    pthread_mutex_lock(&general.is_on);
+    // pthread_mutex_lock(&general.is_on);
+    free_memory();
     return 0;
 }

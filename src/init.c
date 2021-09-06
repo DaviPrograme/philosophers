@@ -25,6 +25,7 @@ void init_general_infos(char **args, int count_args)
     general.time_die = atoi(args[2]);
     general.time_eat = atoi(args[3]);
     general.time_sleep = atoi(args[4]);
+    general.a_philo_died = false;
     general.opt_eat = false;
     general.num_eat = 0;
     if (count_args == 5)

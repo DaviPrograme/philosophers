@@ -15,7 +15,9 @@ void *monitor(void *person)
     while (philo->is_alive)
     {
         if (check_philo_is_died(philo))
+        {
             death(philo);
+        }
     }
     return NULL;
 }
