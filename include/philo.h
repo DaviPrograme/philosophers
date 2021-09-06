@@ -24,7 +24,6 @@ t_philo *philos;
 
 struct s_general_infos
 {
-    pthread_mutex_t is_on;
     pthread_mutex_t *forks;
     pthread_mutex_t display;
     unsigned int n_philos;
