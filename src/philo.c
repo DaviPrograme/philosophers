@@ -27,11 +27,23 @@ void *create_thread_philo(void *philosopher)
 
 void create_philos(t_philo *all_philos, int num_philos)
 {
-    while (--num_philos >= 0)
+    int count;
+
+    count = num_philos - 1;
+    while (count >= 0)
     {
-        pthread_create(&all_philos[num_philos].thread, NULL, create_thread_philo, &all_philos[num_philos]);
-        usleep(100);
+        pthread_create(&all_philos[count].thread, NULL, create_thread_philo, &all_philos[count]);
+        usleep(50);
+        count -= 2;
     }
-    while (++num_philos < (int)general.n_philos)
-        pthread_join(all_philos[num_philos].thread, NULL);
+    count = num_philos - 2;
+    while (count >= 0)
+    {
+        pthread_create(&all_philos[count].thread, NULL, create_thread_philo, &all_philos[count]);
+        usleep(50);
+        count -= 2;
+    }
+    count = -1;
+    while (++count < (int)general.n_philos)
+        pthread_join(all_philos[count].thread, NULL);
 }
