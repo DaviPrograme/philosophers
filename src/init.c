@@ -14,18 +14,18 @@
 
 void	init_philos(int num_philos)
 {
-	philos = (t_philo *)malloc(sizeof(t_philo) * num_philos);
-	if (!philos)
+	g_philos = (t_philo *)malloc(sizeof(t_philo) * num_philos);
+	if (!g_philos)
 		error(4);
 	while (--num_philos >= 0)
 	{
-		philos[num_philos].num = num_philos + 1;
-		philos[num_philos].is_alive = true;
-		philos[num_philos].t_born = 0;
-		philos[num_philos].t_life = 0;
-		philos[num_philos].meals = 0;
-		philos[num_philos].fork_left = &general.forks[num_philos];
-		philos[num_philos].fork_right = &general.forks[(num_philos + 1) % \
+		g_philos[num_philos].num = num_philos + 1;
+		g_philos[num_philos].is_alive = true;
+		g_philos[num_philos].t_born = 0;
+		g_philos[num_philos].t_life = 0;
+		g_philos[num_philos].meals = 0;
+		g_philos[num_philos].fork_left = &general.forks[num_philos];
+		g_philos[num_philos].fork_right = &general.forks[(num_philos + 1) % \
 										general.n_philos];
 	}
 }

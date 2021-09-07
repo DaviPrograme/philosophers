@@ -19,7 +19,7 @@ void	kill_all_philos(void)
 	x = 0;
 	while (x < general.n_philos)
 	{
-		philos[x].is_alive = false;
+		g_philos[x].is_alive = false;
 		++x;
 	}
 }
