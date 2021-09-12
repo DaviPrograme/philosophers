@@ -15,12 +15,12 @@
 void	*create_thread_philo(void *philosopher)
 {
 	t_philo		*philo;
-	pthread_t	mutex;
+	pthread_t	thread;
 
 	philo = (t_philo *)philosopher;
 	philo->t_born = timestamp();
 	philo->t_life = philo->t_born + general.time_die;
-	pthread_create(&mutex, NULL, monitor, philo);
+	pthread_create(&thread, NULL, monitor, philo);
 	while (philo->is_alive && !general.a_philo_died)
 	{
 		take_forks(philo);
@@ -32,7 +32,7 @@ void	*create_thread_philo(void *philosopher)
 		think(philo);
 	}
 	philo->is_alive = false;
-	pthread_join(mutex, NULL);
+	pthread_join(thread, NULL);
 	return (NULL);
 }
 
