@@ -14,8 +14,8 @@
 
 void	display(char *string, t_philo *person)
 {
-	pthread_mutex_lock(&general.display);
-	if (person->is_alive && !general.a_philo_died)
+	pthread_mutex_lock(&g_eneral.display);
+	if (person->is_alive && !g_eneral.a_philo_died)
 		printf("%lu %d %s\n", timestamp() - person->t_born, person->num, string);
-	pthread_mutex_unlock(&general.display);
+	pthread_mutex_unlock(&g_eneral.display);
 }

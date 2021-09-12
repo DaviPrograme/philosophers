@@ -24,9 +24,9 @@ void	init_philos(int num_philos)
 		g_philos[num_philos].t_born = 0;
 		g_philos[num_philos].t_life = 0;
 		g_philos[num_philos].meals = 0;
-		g_philos[num_philos].fork_left = &general.forks[num_philos];
-		g_philos[num_philos].fork_right = &general.forks[(num_philos + 1) % \
-										general.n_philos];
+		g_philos[num_philos].fork_left = &g_eneral.forks[num_philos];
+		g_philos[num_philos].fork_right = &g_eneral.forks[(num_philos + 1) % \
+										g_eneral.n_philos];
 	}
 }
 
@@ -34,30 +34,30 @@ void	init_general_infos(char **args, int count_args)
 {
 	unsigned int	count_philos;
 
-	general.n_philos = atoi(args[1]);
-	general.time_die = atoi(args[2]);
-	general.time_eat = atoi(args[3]);
-	general.time_sleep = atoi(args[4]);
-	general.a_philo_died = false;
-	general.opt_eat = false;
-	general.num_eat = 0;
+	g_eneral.n_philos = atoi(args[1]);
+	g_eneral.time_die = atoi(args[2]);
+	g_eneral.time_eat = atoi(args[3]);
+	g_eneral.time_sleep = atoi(args[4]);
+	g_eneral.a_philo_died = false;
+	g_eneral.opt_eat = false;
+	g_eneral.num_eat = 0;
 	if (count_args == 5)
 	{
-		general.opt_eat = true;
-		general.num_eat = atoi(args[5]);
+		g_eneral.opt_eat = true;
+		g_eneral.num_eat = atoi(args[5]);
 	}
-	general.forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
-			general.n_philos);
-	if (!general.forks)
+	g_eneral.forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
+			g_eneral.n_philos);
+	if (!g_eneral.forks)
 		error(3);
 	count_philos = -1;
-	while (++count_philos < general.n_philos)
-		pthread_mutex_init(&general.forks[count_philos], NULL);
-	pthread_mutex_init(&general.display, NULL);
+	while (++count_philos < g_eneral.n_philos)
+		pthread_mutex_init(&g_eneral.forks[count_philos], NULL);
+	pthread_mutex_init(&g_eneral.display, NULL);
 }
 
 void	init_globals(int argc, char **args)
 {
 	init_general_infos(args, argc - 1);
-	init_philos(general.n_philos);
+	init_philos(g_eneral.n_philos);
 }

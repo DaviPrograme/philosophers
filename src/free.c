@@ -15,5 +15,5 @@
 void	free_memory(void)
 {
 	free(g_philos);
-	free(general.forks);
+	free(g_eneral.forks);
 }

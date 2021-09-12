@@ -45,7 +45,7 @@ struct s_general_infos
 	bool				opt_eat;
 	bool				a_philo_died;
 	unsigned int		num_eat;
-}						general;
+}						g_eneral;
 void	error(int id_erro);
 bool	check_they_are_valid_numbers(char **argv);
 void	init_globals(int argc, char **args);

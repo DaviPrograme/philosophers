@@ -16,13 +16,13 @@ void	take_forks(t_philo *person)
 {
 	pthread_mutex_lock(person->fork_left);
 	display("has taken a fork", person);
-	if (general.n_philos > 1)
+	if (g_eneral.n_philos > 1)
 	{
 		pthread_mutex_lock(person->fork_right);
 		display("has taken a fork", person);
 	}
 	else
-		usleep(general.time_die * 1000 * 2);
+		usleep(g_eneral.time_die * 1000 * 2);
 }
 
 void	drop_forks(t_philo *person)
@@ -34,16 +34,16 @@ void	drop_forks(t_philo *person)
 void	eat(t_philo *person)
 {
 	display("is eating", person);
-	usleep(general.time_eat * 1000);
-	if (!general.a_philo_died)
-		person->t_life += general.time_die;
+	usleep(g_eneral.time_eat * 1000);
+	if (!g_eneral.a_philo_died)
+		person->t_life += g_eneral.time_die;
 	person->meals += 1;
 }
 
 void	_sleep(t_philo *person)
 {
 	display("is sleeping", person);
-	usleep(general.time_sleep * 1000);
+	usleep(g_eneral.time_sleep * 1000);
 }
 
 void	think(t_philo *person)

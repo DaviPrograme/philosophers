@@ -19,14 +19,14 @@ void	*create_thread_philo(void *philosopher)
 
 	philo = (t_philo *)philosopher;
 	philo->t_born = timestamp();
-	philo->t_life = philo->t_born + general.time_die;
+	philo->t_life = philo->t_born + g_eneral.time_die;
 	pthread_create(&thread, NULL, monitor, philo);
-	while (philo->is_alive && !general.a_philo_died)
+	while (philo->is_alive && !g_eneral.a_philo_died)
 	{
 		take_forks(philo);
 		eat(philo);
 		drop_forks(philo);
-		if (general.opt_eat && philo->meals >= general.num_eat)
+		if (g_eneral.opt_eat && philo->meals >= g_eneral.num_eat)
 			break ;
 		_sleep(philo);
 		think(philo);
@@ -57,6 +57,6 @@ void	create_philos(t_philo *all_philos, int num_philos)
 		count -= 2;
 	}
 	count = -1;
-	while (++count < (int)general.n_philos)
+	while (++count < (int)g_eneral.n_philos)
 		pthread_join(all_philos[count].thread, NULL);
 }

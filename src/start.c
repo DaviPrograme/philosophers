@@ -14,5 +14,5 @@
 
 void	start_meeting(void)
 {
-	create_philos(g_philos, general.n_philos);
+	create_philos(g_philos, g_eneral.n_philos);
 }

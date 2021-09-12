@@ -17,7 +17,7 @@ void	kill_all_philos(void)
 	unsigned int	x;
 
 	x = 0;
-	while (x < general.n_philos)
+	while (x < g_eneral.n_philos)
 	{
 		g_philos[x].is_alive = false;
 		++x;
@@ -27,10 +27,10 @@ void	kill_all_philos(void)
 void	death(t_philo *person)
 {
 	person->is_alive = false;
-	pthread_mutex_lock(&general.display);
-	if (!general.a_philo_died)
+	pthread_mutex_lock(&g_eneral.display);
+	if (!g_eneral.a_philo_died)
 		printf("%lu %d died\n", timestamp() - person->t_born, person->num);
-	general.a_philo_died = true;
+	g_eneral.a_philo_died = true;
 	kill_all_philos();
-	pthread_mutex_unlock(&general.display);
+	pthread_mutex_unlock(&g_eneral.display);
 }
